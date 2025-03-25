@@ -25,21 +25,21 @@ const LoginForm = () => {
       const success = await login(email, password, role);
       if (success) {
         toast({
-          title: "Login successful",
-          description: `Welcome back, ${role === 'teacher' ? 'Professor' : 'Student'}!`,
+          title: "Вход выполнен успешно",
+          description: `Добро пожаловать, ${role === 'teacher' ? 'Преподаватель' : 'Студент'}!`,
         });
         navigate('/dashboard');
       } else {
         toast({
-          title: "Login failed",
-          description: "Invalid email or password. Please try again.",
+          title: "Ошибка входа",
+          description: "Неверный email или пароль. Пожалуйста, попробуйте снова.",
           variant: "destructive",
         });
       }
     } catch (error) {
       toast({
-        title: "An error occurred",
-        description: "Failed to login. Please try again later.",
+        title: "Произошла ошибка",
+        description: "Не удалось войти. Пожалуйста, попробуйте позже.",
         variant: "destructive",
       });
     } finally {
@@ -51,23 +51,23 @@ const LoginForm = () => {
     <AnimatedCard className="max-w-md w-full mx-auto">
       <div className="space-y-4">
         <div className="text-center">
-          <h2 className="text-2xl font-bold">Welcome back</h2>
-          <p className="text-muted-foreground">Sign in to your account</p>
+          <h2 className="text-2xl font-bold">Добро пожаловать</h2>
+          <p className="text-muted-foreground">Войдите в свой аккаунт</p>
         </div>
 
         <Tabs defaultValue="student" onValueChange={(value) => setRole(value as 'teacher' | 'student')}>
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="student">Student</TabsTrigger>
-            <TabsTrigger value="teacher">Teacher</TabsTrigger>
+            <TabsTrigger value="student">Студент</TabsTrigger>
+            <TabsTrigger value="teacher">Преподаватель</TabsTrigger>
           </TabsList>
           <TabsContent value="student">
             <div className="pt-4 text-sm text-muted-foreground">
-              Log in as a student to take tests and view your results.
+              Войдите как студент, чтобы проходить тесты и просматривать свои результаты.
             </div>
           </TabsContent>
           <TabsContent value="teacher">
             <div className="pt-4 text-sm text-muted-foreground">
-              Log in as a teacher to create tests and view student results.
+              Войдите как преподаватель, чтобы создавать тесты и просматривать результаты студентов.
             </div>
           </TabsContent>
         </Tabs>
@@ -78,7 +78,7 @@ const LoginForm = () => {
             <Input
               id="email"
               type="email"
-              placeholder={role === 'teacher' ? "teacher@example.com" : "student@example.com"}
+              placeholder={role === 'teacher' ? "преподаватель@пример.рф" : "студент@пример.рф"}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -86,28 +86,28 @@ const LoginForm = () => {
           </div>
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Пароль</Label>
               <a href="#" className="text-xs text-primary hover:underline">
-                Forgot password?
+                Забыли пароль?
               </a>
             </div>
             <Input
               id="password"
               type="password"
-              placeholder="Enter your password"
+              placeholder="Введите ваш пароль"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
           <Button type="submit" className="w-full" disabled={isLoading}>
-            {isLoading ? "Signing in..." : "Sign in"}
+            {isLoading ? "Вход в систему..." : "Войти"}
           </Button>
         </form>
 
         <div className="text-center text-sm text-muted-foreground">
           <p>
-            For demo purposes, use:
+            Для демонстрации используйте:
             <br />
             {role === 'teacher' ? (
               <span className="font-medium">teacher@example.com / password</span>

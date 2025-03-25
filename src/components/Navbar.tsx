@@ -42,7 +42,7 @@ const Navbar = () => {
               to="/" 
               className="text-xl font-bold tracking-tight hover:text-primary/80 transition-colors"
             >
-              University Portal
+              Университетский Портал
             </Link>
           </div>
 
@@ -54,7 +54,7 @@ const Navbar = () => {
                 location.pathname === '/' ? 'text-primary' : 'text-muted-foreground'
               }`}
             >
-              Home
+              Главная
             </Link>
             
             {isAuthenticated && (
@@ -65,7 +65,7 @@ const Navbar = () => {
                     location.pathname === '/dashboard' ? 'text-primary' : 'text-muted-foreground'
                   }`}
                 >
-                  Dashboard
+                  Панель управления
                 </Link>
                 
                 {user?.role === 'teacher' && (
@@ -75,7 +75,7 @@ const Navbar = () => {
                       location.pathname === '/test-create' ? 'text-primary' : 'text-muted-foreground'
                     }`}
                   >
-                    Create Tests
+                    Создать тесты
                   </Link>
                 )}
                 
@@ -86,7 +86,7 @@ const Navbar = () => {
                       location.pathname === '/test-take' ? 'text-primary' : 'text-muted-foreground'
                     }`}
                   >
-                    Take Tests
+                    Пройти тесты
                   </Link>
                 )}
                 
@@ -96,7 +96,7 @@ const Navbar = () => {
                     location.pathname === '/results' ? 'text-primary' : 'text-muted-foreground'
                   }`}
                 >
-                  Results
+                  Результаты
                 </Link>
               </>
             )}
@@ -112,7 +112,7 @@ const Navbar = () => {
                   </div>
                   <div>
                     <p className="text-sm font-medium">{user?.name}</p>
-                    <p className="text-xs text-muted-foreground capitalize">{user?.role}</p>
+                    <p className="text-xs text-muted-foreground capitalize">{user?.role === 'teacher' ? 'Преподаватель' : 'Студент'}</p>
                   </div>
                 </div>
                 <Button 
@@ -122,13 +122,13 @@ const Navbar = () => {
                   className="flex items-center gap-1"
                 >
                   <LogOut className="h-4 w-4" />
-                  <span>Logout</span>
+                  <span>Выйти</span>
                 </Button>
               </div>
             ) : (
               <div className="flex items-center gap-2">
                 <Button asChild variant="ghost" size="sm">
-                  <Link to="/login">Log in</Link>
+                  <Link to="/login">Войти</Link>
                 </Button>
               </div>
             )}
@@ -159,7 +159,7 @@ const Navbar = () => {
                   location.pathname === '/' ? 'text-primary' : 'text-muted-foreground'
                 }`}
               >
-                Home
+                Главная
               </Link>
               
               {isAuthenticated && (
@@ -170,7 +170,7 @@ const Navbar = () => {
                       location.pathname === '/dashboard' ? 'text-primary' : 'text-muted-foreground'
                     }`}
                   >
-                    Dashboard
+                    Панель управления
                   </Link>
                   
                   {user?.role === 'teacher' && (
@@ -180,7 +180,7 @@ const Navbar = () => {
                         location.pathname === '/test-create' ? 'text-primary' : 'text-muted-foreground'
                       }`}
                     >
-                      Create Tests
+                      Создать тесты
                     </Link>
                   )}
                   
@@ -191,7 +191,7 @@ const Navbar = () => {
                         location.pathname === '/test-take' ? 'text-primary' : 'text-muted-foreground'
                       }`}
                     >
-                      Take Tests
+                      Пройти тесты
                     </Link>
                   )}
                   
@@ -201,7 +201,7 @@ const Navbar = () => {
                       location.pathname === '/results' ? 'text-primary' : 'text-muted-foreground'
                     }`}
                   >
-                    Results
+                    Результаты
                   </Link>
                 </>
               )}
@@ -216,7 +216,7 @@ const Navbar = () => {
                     </div>
                     <div>
                       <p className="text-sm font-medium">{user?.name}</p>
-                      <p className="text-xs text-muted-foreground capitalize">{user?.role}</p>
+                      <p className="text-xs text-muted-foreground capitalize">{user?.role === 'teacher' ? 'Преподаватель' : 'Студент'}</p>
                     </div>
                   </div>
                   <Button 
@@ -226,7 +226,7 @@ const Navbar = () => {
                     className="flex items-center gap-1"
                   >
                     <LogOut className="h-4 w-4" />
-                    <span>Logout</span>
+                    <span>Выйти</span>
                   </Button>
                 </div>
               </div>
@@ -234,7 +234,7 @@ const Navbar = () => {
               <div className="mt-4 pt-4 border-t border-border">
                 <div className="flex flex-col gap-2">
                   <Button asChild size="sm">
-                    <Link to="/login">Log in</Link>
+                    <Link to="/login">Войти</Link>
                   </Button>
                 </div>
               </div>
