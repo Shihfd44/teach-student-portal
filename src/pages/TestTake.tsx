@@ -15,33 +15,33 @@ import { AlertTriangle, Clock } from 'lucide-react';
 // Example test data (in a real app, this would come from an API)
 const TEST_DATA = {
   id: '1',
-  title: 'Introduction to Physics',
-  description: 'This test covers basic concepts of physics including motion, energy, and forces.',
+  title: 'Введение в физику',
+  description: 'Этот тест охватывает основные концепции физики, включая движение, энергию и силы.',
   timeLimit: 60, // in minutes
   questions: [
     {
       id: '1',
-      text: 'Which of the following is a unit of force?',
+      text: 'Какая из следующих единиц измерения является единицей силы?',
       type: 'multiple-choice',
       options: [
-        { id: '1a', text: 'Newton' },
-        { id: '1b', text: 'Watt' },
-        { id: '1c', text: 'Joule' },
-        { id: '1d', text: 'Ampere' },
+        { id: '1a', text: 'Ньютон' },
+        { id: '1b', text: 'Ватт' },
+        { id: '1c', text: 'Джоуль' },
+        { id: '1d', text: 'Ампер' },
       ],
     },
     {
       id: '2',
-      text: 'Explain the concept of gravitational potential energy.',
+      text: 'Объясните концепцию гравитационной потенциальной энергии.',
       type: 'text',
     },
     {
       id: '3',
-      text: 'Newton\'s first law states that an object will remain at rest or in uniform motion unless acted upon by an external force.',
+      text: 'Первый закон Ньютона гласит, что объект останется в состоянии покоя или равномерного движения, если на него не действуют внешние силы.',
       type: 'true-false',
       options: [
-        { id: '3a', text: 'True' },
-        { id: '3b', text: 'False' },
+        { id: '3a', text: 'Верно' },
+        { id: '3b', text: 'Неверно' },
       ],
     },
   ],
@@ -128,8 +128,8 @@ const TestTake = () => {
     await new Promise(resolve => setTimeout(resolve, 1500));
     
     toast({
-      title: "Test submitted successfully",
-      description: "Your answers have been recorded. Check your results soon.",
+      title: "Тест успешно отправлен",
+      description: "Ваши ответы были записаны. Скоро вы сможете узнать результаты.",
     });
     
     navigate('/results');
@@ -164,7 +164,7 @@ const TestTake = () => {
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm text-muted-foreground">
-            {Object.keys(answers).length} of {test.questions.length} questions answered
+            {Object.keys(answers).length} из {test.questions.length} вопросов отвечено
           </span>
           <span className="text-sm font-medium">{progressPercentage}%</span>
         </div>
@@ -178,15 +178,15 @@ const TestTake = () => {
               <AlertTriangle className="h-5 w-5 text-yellow-500" />
             </div>
             <div>
-              <h2 className="text-lg font-semibold">Confirm Submission</h2>
+              <h2 className="text-lg font-semibold">Подтвердите отправку</h2>
               <p className="text-muted-foreground">
-                You have {test.questions.length - Object.keys(answers).length} unanswered questions.
+                У вас есть {test.questions.length - Object.keys(answers).length} неотвеченных вопросов.
               </p>
             </div>
           </div>
           
           <p className="mb-6">
-            Are you sure you want to submit your test now? You won't be able to make changes after submission.
+            Вы уверены, что хотите отправить свой тест прямо сейчас? После отправки вы не сможете внести изменения.
           </p>
           
           <div className="flex justify-end gap-4">
@@ -194,13 +194,13 @@ const TestTake = () => {
               variant="outline"
               onClick={() => setShowConfirmSubmit(false)}
             >
-              Continue Test
+              Продолжить тест
             </Button>
             <Button
               onClick={handleSubmitTest}
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Submitting..." : "Submit Anyway"}
+              {isSubmitting ? "Отправка..." : "Все равно отправить"}
             </Button>
           </div>
         </AnimatedCard>
@@ -209,11 +209,11 @@ const TestTake = () => {
           <AnimatedCard key={currentQuestion.id} className="mb-6">
             <div className="flex justify-between mb-4">
               <span className="text-sm font-medium bg-primary/10 px-3 py-1 rounded-full">
-                Question {currentQuestionIndex + 1} of {test.questions.length}
+                Вопрос {currentQuestionIndex + 1} из {test.questions.length}
               </span>
               <span className="text-sm font-medium text-muted-foreground capitalize">
-                {currentQuestion.type === 'multiple-choice' ? 'Multiple Choice' : 
-                 currentQuestion.type === 'true-false' ? 'True/False' : 'Text Answer'}
+                {currentQuestion.type === 'multiple-choice' ? 'Множественный выбор' : 
+                 currentQuestion.type === 'true-false' ? 'Верно/Неверно' : 'Текстовый ответ'}
               </span>
             </div>
             
@@ -221,7 +221,7 @@ const TestTake = () => {
             
             {currentQuestion.type === 'text' ? (
               <Textarea
-                placeholder="Type your answer here..."
+                placeholder="Введите свой ответ здесь..."
                 rows={5}
                 value={answers[currentQuestion.id] || ''}
                 onChange={e => handleAnswerChange(e.target.value)}
@@ -248,25 +248,25 @@ const TestTake = () => {
               onClick={handlePrevQuestion}
               disabled={currentQuestionIndex === 0}
             >
-              Previous
+              Предыдущий
             </Button>
             
             {currentQuestionIndex < test.questions.length - 1 ? (
               <Button onClick={handleNextQuestion}>
-                Next
+                Следующий
               </Button>
             ) : (
               <Button 
                 onClick={handleSubmitTest}
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Submitting..." : "Submit Test"}
+                {isSubmitting ? "Отправка..." : "Отправить тест"}
               </Button>
             )}
           </div>
           
           <div className="mt-8">
-            <h3 className="font-medium mb-2">Question Navigation</h3>
+            <h3 className="font-medium mb-2">Навигация по вопросам</h3>
             <div className="flex flex-wrap gap-2">
               {test.questions.map((q, index) => (
                 <button

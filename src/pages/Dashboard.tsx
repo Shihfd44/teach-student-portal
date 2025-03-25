@@ -25,12 +25,12 @@ const Dashboard = () => {
   // Mock data
   const recentTests = isTeacher 
     ? [
-        { id: 1, title: 'Introduction to Physics', status: 'published', date: '2023-05-10', submissions: 24 },
-        { id: 2, title: 'Advanced Calculus', status: 'draft', date: '2023-05-15', submissions: 0 },
+        { id: 1, title: 'Введение в физику', status: 'published', date: '2023-05-10', submissions: 24 },
+        { id: 2, title: 'Продвинутая математика', status: 'draft', date: '2023-05-15', submissions: 0 },
       ]
     : [
-        { id: 1, title: 'Introduction to Physics', status: 'completed', score: '85%', date: '2023-05-10' },
-        { id: 2, title: 'Organic Chemistry', status: 'pending', score: '-', date: '2023-05-20' },
+        { id: 1, title: 'Введение в физику', status: 'completed', score: '85%', date: '2023-05-10' },
+        { id: 2, title: 'Органическая химия', status: 'pending', score: '-', date: '2023-05-20' },
       ];
   
   return (
@@ -40,38 +40,38 @@ const Dashboard = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-3xl font-bold mb-2">Welcome, {user.name}</h1>
+        <h1 className="text-3xl font-bold mb-2">Добро пожаловать, {user.name}</h1>
         <p className="text-muted-foreground mb-8">
           {isTeacher 
-            ? "Manage your tests and view student results from your dashboard."
-            : "Track your progress and take tests from your student dashboard."}
+            ? "Управляйте тестами и просматривайте результаты студентов на вашей панели управления."
+            : "Отслеживайте свой прогресс и проходите тесты на вашей студенческой панели."}
         </p>
       </motion.div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <AnimatedCard className="flex flex-col justify-between">
           <div>
-            <h2 className="text-xl font-semibold mb-2">Quick Stats</h2>
+            <h2 className="text-xl font-semibold mb-2">Быстрая статистика</h2>
             <div className="grid grid-cols-2 gap-4 mb-4">
               {isTeacher ? (
                 <>
                   <div className="bg-primary/5 p-4 rounded-md">
-                    <p className="text-sm text-muted-foreground">Tests Created</p>
+                    <p className="text-sm text-muted-foreground">Созданные тесты</p>
                     <p className="text-2xl font-semibold">12</p>
                   </div>
                   <div className="bg-primary/5 p-4 rounded-md">
-                    <p className="text-sm text-muted-foreground">Active Students</p>
+                    <p className="text-sm text-muted-foreground">Активные студенты</p>
                     <p className="text-2xl font-semibold">48</p>
                   </div>
                 </>
               ) : (
                 <>
                   <div className="bg-primary/5 p-4 rounded-md">
-                    <p className="text-sm text-muted-foreground">Tests Completed</p>
+                    <p className="text-sm text-muted-foreground">Пройдено тестов</p>
                     <p className="text-2xl font-semibold">8</p>
                   </div>
                   <div className="bg-primary/5 p-4 rounded-md">
-                    <p className="text-sm text-muted-foreground">Average Score</p>
+                    <p className="text-sm text-muted-foreground">Средний балл</p>
                     <p className="text-2xl font-semibold">76%</p>
                   </div>
                 </>
@@ -80,32 +80,32 @@ const Dashboard = () => {
           </div>
           
           <Button onClick={() => navigate(isTeacher ? '/test-create' : '/test-take')} className="w-full">
-            {isTeacher ? 'Create New Test' : 'Take Available Tests'}
+            {isTeacher ? 'Создать новый тест' : 'Пройти доступные тесты'}
           </Button>
         </AnimatedCard>
         
         <AnimatedCard delay={1}>
-          <h2 className="text-xl font-semibold mb-4">Upcoming Events</h2>
+          <h2 className="text-xl font-semibold mb-4">Предстоящие события</h2>
           <div className="space-y-4">
             <div className="flex items-start gap-4">
               <div className="min-w-[60px] text-center">
-                <p className="text-sm font-medium bg-primary/10 rounded-md py-1">MAY 25</p>
+                <p className="text-sm font-medium bg-primary/10 rounded-md py-1">25 МАЯ</p>
               </div>
               <div>
-                <h3 className="font-medium">{isTeacher ? 'Midterm Deadline' : 'Physics Midterm'}</h3>
+                <h3 className="font-medium">{isTeacher ? 'Срок сдачи семестровых работ' : 'Физика, промежуточный тест'}</h3>
                 <p className="text-sm text-muted-foreground">
-                  {isTeacher ? 'Grades submission deadline' : 'Remember to prepare for your test'}
+                  {isTeacher ? 'Срок подачи оценок' : 'Не забудьте подготовиться к тесту'}
                 </p>
               </div>
             </div>
             <div className="flex items-start gap-4">
               <div className="min-w-[60px] text-center">
-                <p className="text-sm font-medium bg-primary/10 rounded-md py-1">JUN 10</p>
+                <p className="text-sm font-medium bg-primary/10 rounded-md py-1">10 ИЮН</p>
               </div>
               <div>
-                <h3 className="font-medium">Final Exams Begin</h3>
+                <h3 className="font-medium">Начало экзаменов</h3>
                 <p className="text-sm text-muted-foreground">
-                  {isTeacher ? 'Prepare test materials' : 'Study session available'}
+                  {isTeacher ? 'Подготовьте материалы для тестов' : 'Доступна сессия для подготовки'}
                 </p>
               </div>
             </div>
@@ -121,19 +121,19 @@ const Dashboard = () => {
       >
         <motion.div variants={itemVariant}>
           <h2 className="text-xl font-semibold mb-4">
-            {isTeacher ? 'Recent Tests' : 'My Tests'}
+            {isTeacher ? 'Недавние тесты' : 'Мои тесты'}
           </h2>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
               <thead>
                 <tr className="border-b">
-                  <th className="text-left py-3 px-4 font-medium">Title</th>
-                  <th className="text-left py-3 px-4 font-medium">Date</th>
-                  <th className="text-left py-3 px-4 font-medium">Status</th>
+                  <th className="text-left py-3 px-4 font-medium">Название</th>
+                  <th className="text-left py-3 px-4 font-medium">Дата</th>
+                  <th className="text-left py-3 px-4 font-medium">Статус</th>
                   <th className="text-left py-3 px-4 font-medium">
-                    {isTeacher ? 'Submissions' : 'Score'}
+                    {isTeacher ? 'Ответы' : 'Балл'}
                   </th>
-                  <th className="text-right py-3 px-4 font-medium">Actions</th>
+                  <th className="text-right py-3 px-4 font-medium">Действия</th>
                 </tr>
               </thead>
               <tbody>
@@ -149,7 +149,10 @@ const Dashboard = () => {
                           ? 'bg-yellow-100 text-yellow-800'
                           : 'bg-red-100 text-red-800'
                       }`}>
-                        {test.status.charAt(0).toUpperCase() + test.status.slice(1)}
+                        {test.status === 'published' ? 'Опубликован' :
+                         test.status === 'draft' ? 'Черновик' :
+                         test.status === 'completed' ? 'Завершен' :
+                         test.status === 'pending' ? 'Ожидает' : test.status}
                       </span>
                     </td>
                     <td className="py-3 px-4">
@@ -167,10 +170,10 @@ const Dashboard = () => {
                         )}
                       >
                         {isTeacher 
-                          ? 'Edit' 
+                          ? 'Редактировать' 
                           : test.status === 'pending' 
-                            ? 'Take Test' 
-                            : 'View Results'}
+                            ? 'Пройти тест' 
+                            : 'Просмотр результатов'}
                       </Button>
                     </td>
                   </tr>
@@ -183,10 +186,10 @@ const Dashboard = () => {
         <motion.div variants={itemVariant}>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold">
-              {isTeacher ? 'Student Progress' : 'My Progress'}
+              {isTeacher ? 'Прогресс студентов' : 'Мой прогресс'}
             </h2>
             <Button variant="outline" size="sm" onClick={() => navigate('/results')}>
-              View All
+              Показать все
             </Button>
           </div>
           
@@ -194,8 +197,8 @@ const Dashboard = () => {
             <div className="flex flex-col items-center justify-center py-4">
               <p className="text-muted-foreground text-center mb-2">
                 {isTeacher 
-                  ? 'Detailed analytics and student progress will be displayed here.'
-                  : 'Your learning progress and analytics will be displayed here.'}
+                  ? 'Здесь будет отображаться подробная аналитика и прогресс студентов.'
+                  : 'Здесь будет отображаться ваш прогресс обучения и аналитика.'}
               </p>
               <div className="w-full h-12 bg-muted rounded-md animate-pulse"></div>
             </div>

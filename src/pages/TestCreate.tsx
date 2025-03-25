@@ -38,36 +38,36 @@ interface Test {
 // Mock data
 const SAMPLE_TEST: Test = {
   id: '1',
-  title: 'Introduction to Physics',
-  description: 'This test covers basic physics concepts including motion, energy, and forces.',
+  title: 'Введение в физику',
+  description: 'Этот тест охватывает базовые концепции физики, включая движение, энергию и силы.',
   timeLimit: 60,
   status: 'published',
   questions: [
     {
       id: '1',
-      text: 'Which of the following is a unit of force?',
+      text: 'Какая из следующих единиц измерения является единицей силы?',
       type: 'multiple-choice',
       options: [
-        { id: '1a', text: 'Newton', isCorrect: true },
-        { id: '1b', text: 'Watt', isCorrect: false },
-        { id: '1c', text: 'Joule', isCorrect: false },
-        { id: '1d', text: 'Ampere', isCorrect: false },
+        { id: '1a', text: 'Ньютон', isCorrect: true },
+        { id: '1b', text: 'Ватт', isCorrect: false },
+        { id: '1c', text: 'Джоуль', isCorrect: false },
+        { id: '1d', text: 'Ампер', isCorrect: false },
       ],
     },
     {
       id: '2',
-      text: 'Explain the concept of gravitational potential energy.',
+      text: 'Объясните концепцию гравитационной потенциальной энергии.',
       type: 'text',
       options: [],
-      correctAnswer: 'Gravitational potential energy is the energy stored in an object due to its position in a gravitational field.',
+      correctAnswer: 'Гравитационная потенциальная энергия - это энергия, хранящаяся в объекте из-за его положения в гравитационном поле.',
     },
     {
       id: '3',
-      text: 'Newton\'s first law states that an object will remain at rest or in uniform motion unless acted upon by an external force.',
+      text: 'Первый закон Ньютона гласит, что объект останется в состоянии покоя или равномерного движения, если на него не действуют внешние силы.',
       type: 'true-false',
       options: [
-        { id: '3a', text: 'True', isCorrect: true },
-        { id: '3b', text: 'False', isCorrect: false },
+        { id: '3a', text: 'Верно', isCorrect: true },
+        { id: '3b', text: 'Неверно', isCorrect: false },
       ],
     },
   ],
@@ -167,8 +167,8 @@ const TestCreate = () => {
           ...updatedQuestions[index],
           type,
           options: [
-            { id: crypto.randomUUID(), text: 'True', isCorrect: false },
-            { id: crypto.randomUUID(), text: 'False', isCorrect: false },
+            { id: crypto.randomUUID(), text: 'Верно', isCorrect: false },
+            { id: crypto.randomUUID(), text: 'Неверно', isCorrect: false },
           ],
         };
       } else {
@@ -232,8 +232,8 @@ const TestCreate = () => {
     // Validation
     if (!test.title.trim()) {
       toast({
-        title: "Error",
-        description: "Please add a title for your test",
+        title: "Ошибка",
+        description: "Пожалуйста, добавьте название для вашего теста",
         variant: "destructive",
       });
       return;
@@ -241,8 +241,8 @@ const TestCreate = () => {
     
     if (test.questions.length === 0) {
       toast({
-        title: "Error",
-        description: "Please add at least one question to your test",
+        title: "Ошибка",
+        description: "Пожалуйста, добавьте хотя бы один вопрос в ваш тест",
         variant: "destructive",
       });
       return;
@@ -254,8 +254,8 @@ const TestCreate = () => {
       
       if (!q.text.trim()) {
         toast({
-          title: "Error",
-          description: `Question ${i + 1} is missing text`,
+          title: "Ошибка",
+          description: `В вопросе ${i + 1} отсутствует текст`,
           variant: "destructive",
         });
         return;
@@ -265,8 +265,8 @@ const TestCreate = () => {
         const hasCorrectOption = q.options.some(o => o.isCorrect);
         if (!hasCorrectOption) {
           toast({
-            title: "Error",
-            description: `Question ${i + 1} doesn't have a correct answer marked`,
+            title: "Ошибка",
+            description: `В вопросе ${i + 1} не отмечен правильный ответ`,
             variant: "destructive",
           });
           return;
@@ -275,8 +275,8 @@ const TestCreate = () => {
         for (let j = 0; j < q.options.length; j++) {
           if (!q.options[j].text.trim()) {
             toast({
-              title: "Error",
-              description: `Option ${j + 1} in question ${i + 1} is empty`,
+              title: "Ошибка",
+              description: `Вариант ${j + 1} в вопросе ${i + 1} пуст`,
               variant: "destructive",
             });
             return;
@@ -284,8 +284,8 @@ const TestCreate = () => {
         }
       } else if (q.type === 'text' && !q.correctAnswer?.trim()) {
         toast({
-          title: "Error",
-          description: `Question ${i + 1} doesn't have a correct answer`,
+          title: "Ошибка",
+          description: `В вопросе ${i + 1} нет правильного ответа`,
           variant: "destructive",
         });
         return;
@@ -296,10 +296,10 @@ const TestCreate = () => {
     setTest(prev => ({ ...prev, status }));
     
     toast({
-      title: `Test ${status === 'published' ? 'published' : 'saved'}`,
+      title: `Тест ${status === 'published' ? 'опубликован' : 'сохранен'}`,
       description: status === 'published' 
-        ? "Your test is now available to students"
-        : "Your test has been saved as a draft",
+        ? "Ваш тест теперь доступен для студентов"
+        : "Ваш тест сохранен как черновик",
     });
     
     navigate('/dashboard');
@@ -313,10 +313,10 @@ const TestCreate = () => {
         transition={{ duration: 0.5 }}
       >
         <h1 className="text-3xl font-bold mb-2">
-          {test.id === SAMPLE_TEST.id ? 'Edit Test' : 'Create New Test'}
+          {test.id === SAMPLE_TEST.id ? 'Редактирование теста' : 'Создание нового теста'}
         </h1>
         <p className="text-muted-foreground mb-8">
-          Design your test by adding questions and setting the correct answers.
+          Создайте свой тест, добавляя вопросы и устанавливая правильные ответы.
         </p>
       </motion.div>
       
@@ -325,28 +325,28 @@ const TestCreate = () => {
           <AnimatedCard className="sticky top-20">
             <div className="space-y-4">
               <div>
-                <Label htmlFor="title">Test Title</Label>
+                <Label htmlFor="title">Название теста</Label>
                 <Input
                   id="title"
                   value={test.title}
                   onChange={e => setTest(prev => ({ ...prev, title: e.target.value }))}
-                  placeholder="Enter test title"
+                  placeholder="Введите название теста"
                 />
               </div>
               
               <div>
-                <Label htmlFor="description">Description</Label>
+                <Label htmlFor="description">Описание</Label>
                 <Textarea
                   id="description"
                   value={test.description}
                   onChange={e => setTest(prev => ({ ...prev, description: e.target.value }))}
-                  placeholder="Enter test description"
+                  placeholder="Введите описание теста"
                   rows={3}
                 />
               </div>
               
               <div>
-                <Label htmlFor="timeLimit">Time Limit (minutes)</Label>
+                <Label htmlFor="timeLimit">Ограничение по времени (минуты)</Label>
                 <Input
                   id="timeLimit"
                   type="number"
@@ -358,9 +358,9 @@ const TestCreate = () => {
               </div>
               
               <div className="border-t pt-4 mt-4">
-                <h3 className="font-medium mb-2">Questions</h3>
+                <h3 className="font-medium mb-2">Вопросы</h3>
                 {test.questions.length === 0 ? (
-                  <p className="text-sm text-muted-foreground">No questions added yet</p>
+                  <p className="text-sm text-muted-foreground">Вопросы еще не добавлены</p>
                 ) : (
                   <ul className="space-y-2">
                     {test.questions.map((q, i) => (
@@ -374,11 +374,14 @@ const TestCreate = () => {
                           onClick={() => setCurrentQuestionIndex(i)}
                         >
                           <div className="flex items-center justify-between">
-                            <span className="font-medium">Question {i + 1}</span>
-                            <span className="text-xs capitalize">{q.type}</span>
+                            <span className="font-medium">Вопрос {i + 1}</span>
+                            <span className="text-xs capitalize">
+                              {q.type === 'multiple-choice' ? 'Множественный выбор' :
+                               q.type === 'true-false' ? 'Верно/Неверно' : 'Текстовый ответ'}
+                            </span>
                           </div>
                           <p className="truncate text-xs mt-1">
-                            {q.text || '(No question text)'}
+                            {q.text || '(Текст вопроса отсутствует)'}
                           </p>
                         </button>
                       </li>
@@ -393,7 +396,7 @@ const TestCreate = () => {
                   onClick={addQuestion}
                 >
                   <Plus className="h-4 w-4 mr-2" />
-                  Add Question
+                  Добавить вопрос
                 </Button>
               </div>
               
@@ -404,13 +407,13 @@ const TestCreate = () => {
                   onClick={() => saveTest('draft')}
                 >
                   <Save className="h-4 w-4 mr-2" />
-                  Save Draft
+                  Сохранить черновик
                 </Button>
                 <Button 
                   className="flex-1"
                   onClick={() => saveTest('published')}
                 >
-                  Publish
+                  Опубликовать
                 </Button>
               </div>
             </div>
@@ -422,7 +425,7 @@ const TestCreate = () => {
             <AnimatedCard>
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xl font-semibold">
-                  Question {currentQuestionIndex + 1}
+                  Вопрос {currentQuestionIndex + 1}
                 </h2>
                 <Button
                   variant="ghost"
@@ -431,53 +434,53 @@ const TestCreate = () => {
                   className="text-destructive hover:text-destructive"
                 >
                   <Trash className="h-4 w-4 mr-2" />
-                  Remove
+                  Удалить
                 </Button>
               </div>
               
               <div className="space-y-4">
                 <div>
-                  <Label htmlFor="questionText">Question Text</Label>
+                  <Label htmlFor="questionText">Текст вопроса</Label>
                   <Textarea
                     id="questionText"
                     value={test.questions[currentQuestionIndex].text}
                     onChange={e => updateQuestionText(currentQuestionIndex, e.target.value)}
-                    placeholder="Enter your question here"
+                    placeholder="Введите свой вопрос здесь"
                     rows={2}
                   />
                 </div>
                 
                 <div>
-                  <Label htmlFor="questionType">Question Type</Label>
+                  <Label htmlFor="questionType">Тип вопроса</Label>
                   <Select
                     value={test.questions[currentQuestionIndex].type}
                     onValueChange={(value: Question['type']) => updateQuestionType(currentQuestionIndex, value)}
                   >
                     <SelectTrigger id="questionType">
-                      <SelectValue placeholder="Select question type" />
+                      <SelectValue placeholder="Выберите тип вопроса" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="multiple-choice">Multiple Choice</SelectItem>
-                      <SelectItem value="true-false">True/False</SelectItem>
-                      <SelectItem value="text">Text Answer</SelectItem>
+                      <SelectItem value="multiple-choice">Множественный выбор</SelectItem>
+                      <SelectItem value="true-false">Верно/Неверно</SelectItem>
+                      <SelectItem value="text">Текстовый ответ</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
                 
                 {test.questions[currentQuestionIndex].type === 'text' ? (
                   <div>
-                    <Label htmlFor="correctAnswer">Correct Answer</Label>
+                    <Label htmlFor="correctAnswer">Правильный ответ</Label>
                     <Textarea
                       id="correctAnswer"
                       value={test.questions[currentQuestionIndex].correctAnswer || ''}
                       onChange={e => updateCorrectAnswer(currentQuestionIndex, e.target.value)}
-                      placeholder="Enter the correct answer"
+                      placeholder="Введите правильный ответ"
                       rows={3}
                     />
                   </div>
                 ) : (
                   <div>
-                    <Label>Answer Options</Label>
+                    <Label>Варианты ответов</Label>
                     <div className="space-y-2 mt-2">
                       {test.questions[currentQuestionIndex].options.map((option, optionIndex) => (
                         <div key={option.id} className="flex items-center gap-2">
@@ -492,14 +495,14 @@ const TestCreate = () => {
                           <Input
                             value={option.text}
                             onChange={e => updateOption(currentQuestionIndex, optionIndex, e.target.value)}
-                            placeholder={`Option ${optionIndex + 1}`}
+                            placeholder={`Вариант ${optionIndex + 1}`}
                             disabled={test.questions[currentQuestionIndex].type === 'true-false'}
                           />
                         </div>
                       ))}
                     </div>
                     <p className="text-sm text-muted-foreground mt-2">
-                      Select the radio button next to the correct answer
+                      Выберите радиокнопку рядом с правильным ответом
                     </p>
                   </div>
                 )}
@@ -508,13 +511,13 @@ const TestCreate = () => {
           ) : (
             <AnimatedCard className="flex flex-col items-center justify-center py-8">
               <div className="text-center">
-                <h2 className="text-xl font-semibold mb-2">No Question Selected</h2>
+                <h2 className="text-xl font-semibold mb-2">Вопрос не выбран</h2>
                 <p className="text-muted-foreground mb-4">
-                  Select a question from the sidebar or add a new one to get started
+                  Выберите вопрос из боковой панели или добавьте новый, чтобы начать
                 </p>
                 <Button onClick={addQuestion}>
                   <Plus className="h-4 w-4 mr-2" />
-                  Add First Question
+                  Добавить первый вопрос
                 </Button>
               </div>
             </AnimatedCard>
