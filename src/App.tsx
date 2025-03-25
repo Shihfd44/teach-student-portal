@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard";
 import TestCreate from "./pages/TestCreate";
 import TestTake from "./pages/TestTake";
 import Results from "./pages/Results";
+import Chat from "./pages/Chat";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ const App = () => (
               <Route path="/test-create" element={<TestCreate />} />
               <Route path="/test-take" element={<TestTake />} />
               <Route path="/results" element={<Results />} />
+              <Route path="/chat" element={<Chat />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

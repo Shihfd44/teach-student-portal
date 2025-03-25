@@ -5,6 +5,7 @@ import { useAuth } from '@/context/AuthContext';
 import AnimatedCard from '@/components/ui/AnimatedCard';
 import { Button } from '@/components/ui/button';
 import { motion, staggerContainer, itemVariant } from '@/utils/transitions';
+import { MessageSquare } from 'lucide-react';
 
 const Dashboard = () => {
   const { user, isAuthenticated } = useAuth();
@@ -79,9 +80,19 @@ const Dashboard = () => {
             </div>
           </div>
           
-          <Button onClick={() => navigate(isTeacher ? '/test-create' : '/test-take')} className="w-full">
-            {isTeacher ? 'Создать новый тест' : 'Пройти доступные тесты'}
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-2">
+            <Button onClick={() => navigate(isTeacher ? '/test-create' : '/test-take')} className="flex-1">
+              {isTeacher ? 'Создать новый тест' : 'Пройти доступные тесты'}
+            </Button>
+            <Button 
+              onClick={() => navigate('/chat')} 
+              variant="outline" 
+              className="flex-1"
+            >
+              <MessageSquare className="mr-2 h-4 w-4" />
+              Перейти в чат
+            </Button>
+          </div>
         </AnimatedCard>
         
         <AnimatedCard delay={1}>
